@@ -23,7 +23,8 @@ alert("количество отгаданных загадок = " + otgadka);
 
 for (i = 1; i < 11; i++) {
     alert(i);
-}
+}   
+
 
 var z = 0;
 
@@ -79,4 +80,5 @@ for (let i = 2; i <= MoyNomer; i++) {
     alert(i);
   }
 
+  
   
