@@ -7,10 +7,10 @@ user.sayHi = function() {
 };
 user.sayHi(); // Привет!
 let zxc = {
-  name: "Кирилл Борисов",
+  name: "Елисей Балин",
   address: "ул. Пушкина, дом Колотушкино",
   phone: "+7 (999) 999-99-99",
-  email: "femboy.pemqshe@gmail.com",
+  email: "eliseybalin@gmail.com",
   orderHistory: [] 
  };
  
@@ -18,7 +18,7 @@ let zxc = {
  console.log(zxc.address); 
  console.log(zxc.phone); 
  let children = {
-  name: "Дмитрий",
+  name: "ГИГАЧАТ",
   isAdmin: false
  };
  let fff = {
@@ -29,8 +29,8 @@ status: "Ожидание"
  }
  let restaurant = {
   id:2,
-  name: "Freddy fazbear",
-  address:"Печатники"
+  name: "DODO",
+  address:"РАменское"
  };
  if (fff.status === "Ожидание") {
   console.log(`Заказ ${fff.userId} от пользователя ${children.name} в ресторане ${restaurant.name} ожидание.`);
@@ -58,7 +58,7 @@ function GroupMember(name) {
   };
  }
  
- const vasya = new Student("Кирилл", "ИСП-209", ["Программирование"]);
+ const vasya = new Student("Елисей", "ИСП-209", ["Программирование"]);
  
  vasya.sayHi(); 
  vasya.showCourses();
