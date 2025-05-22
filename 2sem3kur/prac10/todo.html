@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue To Do List</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    input[type="text"] { padding: 6px; width: 250px; }
+    button { margin-left: 5px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input
+      type="text"
+      v-model="newTask"
+      @keyup.enter="addTask"
+      placeholder="Введите задачу"
+    />
+    <ul>
+      <li v-for="(task, idx) in tasks" :key="task.id">
+        <template v-if="editIndex === idx">
+          <input
+            type="text"
+            v-model="editText"
+            @keyup.enter="saveEdit(idx)"
+            @blur="cancelEdit"
+            ref="editInput"
+          />
+        </template>
+        <template v-else>
+          {{ task.text }}
+          <button @click="startEdit(idx, task.text)">Изменить</button>
+          <button @click="deleteTask(idx)">Удалить</button>
+        </template>
+      </li>
+    </ul>
+  </div>
+  <script>
+    const { createApp, nextTick } = Vue;
+    createApp({
+      data() {
+        return {
+          newTask: '',
+          tasks: [],
+          editIndex: null,
+          editText: ''
+        }
+      },
+      methods: {
+        addTask() {
+          const text = this.newTask.trim();
+          if (text) {
+            this.tasks.push({ id: Date.now(), text });
+            this.newTask = '';
+          }
+        },
+        deleteTask(idx) {
+          this.tasks.splice(idx, 1);
+          if (this.editIndex === idx) this.editIndex = null;
+        },
+        startEdit(idx, text) {
+          this.editIndex = idx;
+          this.editText = text;
+          this.$nextTick(() => {
+            this.$refs.editInput[idx].focus();
+          });
+        },
+        saveEdit(idx) {
+          const text = this.editText.trim();
+          if (text) {
+            this.tasks[idx].text = text;
+            this.editIndex = null;
+          }
+        },
+        cancelEdit() {
+          this.editIndex = null;
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
